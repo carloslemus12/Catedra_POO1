@@ -10,13 +10,14 @@ import java.sql.*;
  *
  * @author MekakuZero
  */
-public class Conexion {
+public abstract class Conexion {
+    
     // Objeto de conexion
     private Connection con;
     private PreparedStatement sentencia;
             
     // Base de datos
-    private static String base = "";
+    private static String base = "libreria";
     
     // Informacion de la conexion
     private static String sqlConexion = "jdbc:mysql://localhost/";
@@ -24,7 +25,7 @@ public class Conexion {
     private static String clave = "";
     
     // Creamos la conexion
-    public Conexion(){
+    public void conectar(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.con = DriverManager.getConnection(sqlConexion + base, usuario, clave);
@@ -59,6 +60,14 @@ public class Conexion {
         }
     }
     
+    public void agregarParametro(int posicion, java.util.Date valor){
+        try{
+            this.sentencia.setDate(posicion, new Date(valor.getTime()));
+        } catch(Exception error){
+            System.out.println("Error parametro: " + error.getMessage());
+        }
+    }
+    
     public ResultSet getResultSet(){
         try{
             return this.sentencia.executeQuery();
@@ -87,4 +96,9 @@ public class Conexion {
             System.out.println("Error desconexion: " + error.getMessage());
         }
     }
+    
+    // Metodos abstractos
+    public abstract boolean guardar();
+    public abstract boolean eliminar();
+    public abstract boolean actualizar();
 }
