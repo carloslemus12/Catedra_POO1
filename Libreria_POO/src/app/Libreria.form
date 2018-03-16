@@ -70,7 +70,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="nuevoTemaMenuItem">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+N"/>
+                  <KeyStroke key="Ctrl+T"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nuevo tema"/>
               </Properties>
@@ -81,7 +81,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="verTemasMenuItem">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+D"/>
+                  <KeyStroke key="Ctrl+Alt+T"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ver temas"/>
               </Properties>
