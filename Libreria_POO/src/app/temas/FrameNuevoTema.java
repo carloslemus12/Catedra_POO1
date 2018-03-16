@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.categoria;
+package app.temas;
 
-import app.Lista;
-import app.modelos.CategoriaModelo;
+import app.Libreria;
+import app.modelos.TemaModelo;
 import mojica.alexander.utilidades.Mensaje;
 import mojica.alexander.utilidades.Validacion;
 
@@ -14,26 +14,21 @@ import mojica.alexander.utilidades.Validacion;
  *
  * @author MekakuZero
  */
-public class FrameModificarCategoria extends javax.swing.JInternalFrame {
+public class FrameNuevoTema extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrameNuevaCategoria
      */
-    CategoriaModelo categoria; 
-    Lista lista;
-    
-    public FrameModificarCategoria(CategoriaModelo categoria, Lista lista) {
+    public FrameNuevoTema() {
         initComponents();
-        this.categoria = categoria;
-        this.lista = lista;
         limpiar();
     }
 
     public void limpiar(){
-        this.txtCategoria.setText(this.categoria.getCategoria());
-        this.txtDescripcion.setText(this.categoria.getDescripcion());
+        this.txtTema.setText("");
+        this.txtDescripcion.setText("");
         
-        this.lblErrorCategoria.setText("");
+        this.lblErrorTema.setText("");
     }
     
     /**
@@ -47,52 +42,51 @@ public class FrameModificarCategoria extends javax.swing.JInternalFrame {
 
         pnlCentro = new javax.swing.JPanel();
         lblFila2 = new javax.swing.JPanel();
-        lblCategoria = new javax.swing.JLabel();
-        txtCategoria = new javax.swing.JTextField();
-        lblErrorCategoria = new javax.swing.JLabel();
+        lblTema = new javax.swing.JLabel();
+        txtTema = new javax.swing.JTextField();
+        lblErrorTema = new javax.swing.JLabel();
         pnlFila1 = new javax.swing.JPanel();
         lblDescripcion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         pnlPie = new javax.swing.JPanel();
-        btnModificar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Modificar categoria");
+        setTitle("Nuevo tema");
         setToolTipText("");
 
         pnlCentro.setLayout(new java.awt.GridLayout(2, 1));
 
-        lblCategoria.setText("Categoria:");
+        lblTema.setText("Tema:");
 
-        lblErrorCategoria.setForeground(new java.awt.Color(204, 0, 0));
-        lblErrorCategoria.setText("error");
+        lblErrorTema.setForeground(new java.awt.Color(204, 0, 0));
+        lblErrorTema.setText("error");
 
         javax.swing.GroupLayout lblFila2Layout = new javax.swing.GroupLayout(lblFila2);
         lblFila2.setLayout(lblFila2Layout);
         lblFila2Layout.setHorizontalGroup(
             lblFila2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lblFila2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblCategoria)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lblFila2Layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(lblTema)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(lblFila2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblErrorCategoria)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblErrorTema)
+                    .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         lblFila2Layout.setVerticalGroup(
             lblFila2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lblFila2Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(lblFila2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCategoria)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTema)
+                    .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblErrorCategoria)
+                .addComponent(lblErrorTema)
                 .addContainerGap())
         );
 
@@ -132,10 +126,10 @@ public class FrameModificarCategoria extends javax.swing.JInternalFrame {
         pnlPie.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Opciones"));
         pnlPie.setPreferredSize(new java.awt.Dimension(424, 75));
 
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -146,23 +140,14 @@ public class FrameModificarCategoria extends javax.swing.JInternalFrame {
             }
         });
 
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlPieLayout = new javax.swing.GroupLayout(pnlPie);
         pnlPie.setLayout(pnlPieLayout);
         pnlPieLayout.setHorizontalGroup(
             pnlPieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPieLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addComponent(btnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
                 .addComponent(btnLimpiar)
                 .addContainerGap())
         );
@@ -171,9 +156,8 @@ public class FrameModificarCategoria extends javax.swing.JInternalFrame {
             .addGroup(pnlPieLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlPieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnModificar)
-                    .addComponent(btnLimpiar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnGuardar)
+                    .addComponent(btnLimpiar))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -187,52 +171,41 @@ public class FrameModificarCategoria extends javax.swing.JInternalFrame {
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        String categoria = this.txtCategoria.getText().trim();
+        String tema = this.txtTema.getText().trim();
         String descripcion = this.txtDescripcion.getText().trim();
         
-        if (Validacion.valaidadTexto(this.lblErrorCategoria, categoria, Validacion.NONUMERO)) {
-            CategoriaModelo cat = new CategoriaModelo(this.categoria);
+        if (Validacion.valaidadTexto(this.lblErrorTema, tema, Validacion.NONUMERO)) {
+            TemaModelo tem = new TemaModelo(tema);
             
-            cat.setCategoria(categoria);
+            if (!descripcion.isEmpty()) tem.setDescripcion(descripcion);
             
-            cat.setDescripcion(descripcion);
-            
-            if (cat.actualizar()) {
-                Mensaje.Informacion("La categoria ha sido actualizada con exito!", title);
-                this.lista.actualizarLista();
-                this.dispose();
+            if (tem.guardar()) {
+                Mensaje.Informacion("El tema ha sido almacendo con exito!", title);
+                
+                if (Libreria.listaTemas != null) Libreria.listaTemas.actualizarLista();
+                
+                limpiar();
             } else 
-                Mensaje.Error("No se ha podido actualizar la catgoria", title);
+                Mensaje.Error("No se ha podido almacenar el tema", title);
         } else
             Mensaje.Error("Error en los campos de categoria", title);
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        if (this.categoria.eliminar()) {
-            Mensaje.Informacion("La categoria ha sido eliminada con exito!", title);
-            this.lista.actualizarLista();
-            this.dispose();
-        } else
-            Mensaje.Error("La categoria no se ha podido eliminar", title);
-    }//GEN-LAST:event_btnEliminarActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnModificar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblDescripcion;
-    private javax.swing.JLabel lblErrorCategoria;
+    private javax.swing.JLabel lblErrorTema;
     private javax.swing.JPanel lblFila2;
+    private javax.swing.JLabel lblTema;
     private javax.swing.JPanel pnlCentro;
     private javax.swing.JPanel pnlFila1;
     private javax.swing.JPanel pnlPie;
-    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextArea txtDescripcion;
+    private javax.swing.JTextField txtTema;
     // End of variables declaration//GEN-END:variables
 }

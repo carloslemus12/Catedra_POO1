@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.categoria;
+package app.temas;
 
+import app.categoria.*;
 import app.Lista;
-import app.modelos.CategoriaModelo;
+import app.modelos.TemaModelo;
 import mojica.alexander.utilidades.Mensaje;
 import mojica.alexander.utilidades.Validacion;
 
@@ -14,26 +15,26 @@ import mojica.alexander.utilidades.Validacion;
  *
  * @author MekakuZero
  */
-public class FrameModificarCategoria extends javax.swing.JInternalFrame {
+public class FrameModificarTema extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrameNuevaCategoria
      */
-    CategoriaModelo categoria; 
+    TemaModelo tema; 
     Lista lista;
     
-    public FrameModificarCategoria(CategoriaModelo categoria, Lista lista) {
+    public FrameModificarTema(TemaModelo categoria, Lista lista) {
         initComponents();
-        this.categoria = categoria;
+        this.tema = categoria;
         this.lista = lista;
         limpiar();
     }
 
     public void limpiar(){
-        this.txtCategoria.setText(this.categoria.getCategoria());
-        this.txtDescripcion.setText(this.categoria.getDescripcion());
+        this.txtTema.setText(this.tema.getTema());
+        this.txtDescripcion.setText(this.tema.getDescripcion());
         
-        this.lblErrorCategoria.setText("");
+        this.lblErrorTema.setText("");
     }
     
     /**
@@ -47,9 +48,9 @@ public class FrameModificarCategoria extends javax.swing.JInternalFrame {
 
         pnlCentro = new javax.swing.JPanel();
         lblFila2 = new javax.swing.JPanel();
-        lblCategoria = new javax.swing.JLabel();
-        txtCategoria = new javax.swing.JTextField();
-        lblErrorCategoria = new javax.swing.JLabel();
+        lblTema = new javax.swing.JLabel();
+        txtTema = new javax.swing.JTextField();
+        lblErrorTema = new javax.swing.JLabel();
         pnlFila1 = new javax.swing.JPanel();
         lblDescripcion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -66,33 +67,33 @@ public class FrameModificarCategoria extends javax.swing.JInternalFrame {
 
         pnlCentro.setLayout(new java.awt.GridLayout(2, 1));
 
-        lblCategoria.setText("Categoria:");
+        lblTema.setText("Tema:");
 
-        lblErrorCategoria.setForeground(new java.awt.Color(204, 0, 0));
-        lblErrorCategoria.setText("error");
+        lblErrorTema.setForeground(new java.awt.Color(204, 0, 0));
+        lblErrorTema.setText("error");
 
         javax.swing.GroupLayout lblFila2Layout = new javax.swing.GroupLayout(lblFila2);
         lblFila2.setLayout(lblFila2Layout);
         lblFila2Layout.setHorizontalGroup(
             lblFila2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lblFila2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblCategoria)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lblFila2Layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(lblTema)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(lblFila2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblErrorCategoria)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblErrorTema)
+                    .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         lblFila2Layout.setVerticalGroup(
             lblFila2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lblFila2Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(lblFila2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCategoria)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTema)
+                    .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblErrorCategoria)
+                .addComponent(lblErrorTema)
                 .addContainerGap())
         );
 
@@ -189,34 +190,34 @@ public class FrameModificarCategoria extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        String categoria = this.txtCategoria.getText().trim();
+        String tema = this.txtTema.getText().trim();
         String descripcion = this.txtDescripcion.getText().trim();
         
-        if (Validacion.valaidadTexto(this.lblErrorCategoria, categoria, Validacion.NONUMERO)) {
-            CategoriaModelo cat = new CategoriaModelo(this.categoria);
+        if (Validacion.valaidadTexto(this.lblErrorTema, tema, Validacion.NONUMERO)) {
+            TemaModelo tem = new TemaModelo(this.tema);
             
-            cat.setCategoria(categoria);
+            tem.setTema(tema);
             
-            cat.setDescripcion(descripcion);
+            tem.setDescripcion(descripcion);
             
-            if (cat.actualizar()) {
-                Mensaje.Informacion("La categoria ha sido actualizada con exito!", title);
+            if (tem.actualizar()) {
+                Mensaje.Informacion("El tema ha sido actualizada con exito!", title);
                 this.lista.actualizarLista();
                 this.dispose();
             } else 
-                Mensaje.Error("No se ha podido actualizar la catgoria", title);
+                Mensaje.Error("No se ha podido actualizar el tema", title);
         } else
             Mensaje.Error("Error en los campos de categoria", title);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        if (this.categoria.eliminar()) {
-            Mensaje.Informacion("La categoria ha sido eliminada con exito!", title);
+        if (this.tema.eliminar()) {
+            Mensaje.Informacion("El tema ha sido eliminada con exito!", title);
             this.lista.actualizarLista();
             this.dispose();
         } else
-            Mensaje.Error("La categoria no se ha podido eliminar", title);
+            Mensaje.Error("El tema no se ha podido eliminar", title);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
 
@@ -225,14 +226,14 @@ public class FrameModificarCategoria extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblDescripcion;
-    private javax.swing.JLabel lblErrorCategoria;
+    private javax.swing.JLabel lblErrorTema;
     private javax.swing.JPanel lblFila2;
+    private javax.swing.JLabel lblTema;
     private javax.swing.JPanel pnlCentro;
     private javax.swing.JPanel pnlFila1;
     private javax.swing.JPanel pnlPie;
-    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextArea txtDescripcion;
+    private javax.swing.JTextField txtTema;
     // End of variables declaration//GEN-END:variables
 }

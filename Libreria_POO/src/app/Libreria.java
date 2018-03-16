@@ -9,6 +9,8 @@ import app.autor.FrameAutorLista;
 import app.autor.FrameNuevoAutor;
 import app.categoria.FrameListaCategoria;
 import app.categoria.FrameNuevaCategoria;
+import app.temas.FrameListaTemas;
+import app.temas.FrameNuevoTema;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -23,6 +25,9 @@ public class Libreria extends javax.swing.JFrame implements Contenido {
     
     public static FrameNuevaCategoria nuevaCategoria = null;
     public static FrameListaCategoria listaCategorias = null;
+    
+    public static FrameNuevoTema nuevoTema = null;
+    public static FrameListaTemas listaTemas = null;
     /**
      * Creates new form libreria
      */
@@ -48,6 +53,9 @@ public class Libreria extends javax.swing.JFrame implements Contenido {
         menuCategoria = new javax.swing.JMenu();
         nuvaCategoriaMenuItem = new javax.swing.JMenuItem();
         verCategoriasMenuItem = new javax.swing.JMenuItem();
+        menuTema = new javax.swing.JMenu();
+        nuevoTemaMenuItem = new javax.swing.JMenuItem();
+        verTemasMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema gestion de biblioteca");
@@ -96,6 +104,28 @@ public class Libreria extends javax.swing.JFrame implements Contenido {
 
         menuBar.add(menuCategoria);
 
+        menuTema.setText("Tema");
+
+        nuevoTemaMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        nuevoTemaMenuItem.setText("Nuevo tema");
+        nuevoTemaMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoTemaMenuItemActionPerformed(evt);
+            }
+        });
+        menuTema.add(nuevoTemaMenuItem);
+
+        verTemasMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        verTemasMenuItem.setText("Ver temas");
+        verTemasMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verTemasMenuItemActionPerformed(evt);
+            }
+        });
+        menuTema.add(verTemasMenuItem);
+
+        menuBar.add(menuTema);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,6 +170,20 @@ public class Libreria extends javax.swing.JFrame implements Contenido {
         this.agregarComponente(listaCategorias);
     }//GEN-LAST:event_verCategoriasMenuItemActionPerformed
 
+    private void nuevoTemaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoTemaMenuItemActionPerformed
+        // TODO add your handling code here:
+        if (nuevoTema != null) nuevoTema.dispose();
+        nuevoTema = new FrameNuevoTema();
+        this.agregarComponente(nuevoTema);
+    }//GEN-LAST:event_nuevoTemaMenuItemActionPerformed
+
+    private void verTemasMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verTemasMenuItemActionPerformed
+        // TODO add your handling code here:
+        if (listaTemas != null) listaTemas.dispose();
+        listaTemas = new FrameListaTemas(this);
+        this.agregarComponente(listaTemas);
+    }//GEN-LAST:event_verTemasMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -181,10 +225,13 @@ public class Libreria extends javax.swing.JFrame implements Contenido {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCategoria;
+    private javax.swing.JMenu menuTema;
     private javax.swing.JMenuItem nuevoAutorMenuItem;
+    private javax.swing.JMenuItem nuevoTemaMenuItem;
     private javax.swing.JMenuItem nuvaCategoriaMenuItem;
     private javax.swing.JMenuItem verAutoresMenuItem;
     private javax.swing.JMenuItem verCategoriasMenuItem;
+    private javax.swing.JMenuItem verTemasMenuItem;
     // End of variables declaration//GEN-END:variables
 
     @Override
